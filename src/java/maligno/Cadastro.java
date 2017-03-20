@@ -74,7 +74,6 @@ public class Cadastro extends HttpServlet {
 					m.put("cheiro", cheiro);
 
 					DAO.Inserir(bd, "Peido01", m);
-
 					break;
 				case "POST":
 					nome = request.getParameter("nome");
@@ -92,19 +91,17 @@ public class Cadastro extends HttpServlet {
 					}
 
 					DAO.Atualiza(bd, "Peido01", new AbstractMap.SimpleEntry("nome", nome), m);
-					bd.executeUpdate();
-					bd.commit();
 					break;
 
 				case "DELETE":
-					nome = request.getParameter("nome");
 
 					m = new LinkedHashMap<String, String>();
+					
+					nome = request.getParameter("nome");
+
 					m.put("nome", nome);
 
 					DAO.Deleta(bd, "Peido01", m);
-					bd.executeUpdate();
-					bd.commit();
 					break;
 			}
 
@@ -135,14 +132,11 @@ public class Cadastro extends HttpServlet {
 
 			try {
 				resultado.first();
-
 				w.println("<h1>" + resultado.getString("nome") + "</h1>");
 				w.println("<hr/>");
 				w.println("Som: " + resultado.getString("som") + "<br/>");
 				w.println("Cheiro: " + resultado.getString("cheiro"));
-			}
-			
-			catch(SQLException se){
+			} catch (SQLException se) {
 				w.println("Não existe resultados");
 			}
 
