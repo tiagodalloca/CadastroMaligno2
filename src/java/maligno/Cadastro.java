@@ -22,7 +22,6 @@ import java.util.Map.Entry;
  * @author u15194
  */
 public class Cadastro extends HttpServlet {
-
 	/**
 	 * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
 	 * methods.
