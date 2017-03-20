@@ -19,11 +19,11 @@ import java.util.Set;
  */
 public class DAO {
 
-	public static void Inserir(MeuPreparedStatement db, Map<String, String> map)
+	public static void Inserir(MeuPreparedStatement db, String tabela, Map<Object, Object> map)
 					throws SQLException {
-		String sql = "INSERT INTO Peido01 as(";
-		String valores = "(";
-		for (Iterator<Map.Entry<String, String>> it = map.entrySet().iterator(); it.hasNext();) {
+		String sql = "INSERT INTO " + tabela + " (";
+		String valores = " values(";
+		for (Iterator<Map.Entry<Object, Object>> it = map.entrySet().iterator(); it.hasNext();) {
 			sql += it.next().getKey();
 			valores += "?";
 			if (it.hasNext()) {
@@ -36,62 +36,64 @@ public class DAO {
 
 		db.prepareStatement(sql + valores);
 
-		int i = 0;
-		for (String value : map.values()) {
-			db.setString(i++, value);
+		int i = 1;
+		for (Object value : map.values()) {
+			db.setObject(i++, value);
 		}
 		db.executeUpdate();
 		db.commit();
 	}
 
-	public static MeuResultSet Pesquisa(MeuPreparedStatement db, Map.Entry<String, String> e)
+	public static MeuResultSet Pesquisa(MeuPreparedStatement db, String tabela, Map.Entry<Object, Object> e)
 					throws SQLException {
-		String sql = "SELECT * FROM Peido01 WHERE" + e.getKey() + "= ?";
+		String sql = "SELECT * FROM " + tabela + " WHERE " + e.getKey() + "= ?";
 
 		db.prepareStatement(sql);
-		db.setString(1, e.getValue());
+		db.setObject(1, e.getValue());
 
 		return (MeuResultSet) db.executeQuery();
 	}
 
-	public static void Atualiza(MeuPreparedStatement db, Map<String, String> map)
+	public static void Atualiza(MeuPreparedStatement db, String tabela, Map.Entry<Object, Object> id, Map<Object, Object> map)
 					throws SQLException {
-		String sql = "UPDATE Peido01";
-		String set = "SET";
-		String where = " WHERE";
-		String nome = map.get("nome");
+		String sql = "UPDATE " + tabela;
+		String set = " SET ";
+		String where = " WHERE ";
 
-		where += "nome=?";
+		where += id.getKey() + "=?";
 
-		for (Entry<String, String> e : map.entrySet()) {
-			set += " " + e.getKey() + "= ?";
+		for (Iterator<Map.Entry<Object, Object>> it = map.entrySet().iterator(); it.hasNext();) {
+			set += it.next().getKey() + "= ?";
+			if(it.hasNext()){
+				set += ", ";
+			}
 		}
 
 		db.prepareStatement(sql + set + where);
 
-		db.setString(1, nome);
+		db.setObject(map.size() + 1, id.getValue());
 
 		int i = 1;
-		for (String value : map.values()) {
-			db.setString(i++, value);
+		for (Object value : map.values()) {
+			db.setObject(i++, value);
 		}
 		db.executeUpdate();
 		db.commit();
 	}
 	
-		public static void Deleta(MeuPreparedStatement db, Map<String, String> map)
+		public static void Deleta(MeuPreparedStatement db, String tabela, Map<Object, Object> map)
 					throws SQLException {
-		String sql = "DELETE Peido01 WHERE";
+		String sql = "DELETE " + tabela + " WHERE";
 
-		for (Entry<String, String> e : map.entrySet()) {
+		for (Entry<Object, Object> e : map.entrySet()) {
 			sql += " " + e.getKey() + "= ?";
 		}
 
 		db.prepareStatement(sql);
 
-		int i = 0;
-		for (String value : map.values()) {
-			db.setString(i++, value);
+		int i = 1;
+		for (Object value : map.values()) {
+			db.setObject(i++, value);
 		}
 		db.executeUpdate();
 		db.commit();

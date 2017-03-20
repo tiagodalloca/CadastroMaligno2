@@ -7,6 +7,7 @@ package maligno;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.AbstractMap;
 import java.util.LinkedHashMap;
 import javax.servlet.ServletException;
@@ -41,16 +42,16 @@ public class Cadastro extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-					throws ServletException, IOException {
+		throws ServletException, IOException {
 
 		PrintWriter w = response.getWriter();
-		LinkedHashMap<String, String> m;
+		LinkedHashMap m;
 
 		try {
 			MeuPreparedStatement bd = new MeuPreparedStatement(
-							"com.microsoft.sqlserver.jdbc.SQLServerDriver",
-							"jdbc:sqlserver://regulus:1433;databasename=BD15191",
-							"BD15191", "uregis191");
+				"com.microsoft.sqlserver.jdbc.SQLServerDriver",
+				"jdbc:sqlserver://regulus:1433;databasename=BD15191",
+				"BD15191", "uregis191");
 
 			String method = request.getParameter("_method");
 
@@ -67,12 +68,12 @@ public class Cadastro extends HttpServlet {
 					som = request.getParameter("som");
 					cheiro = request.getParameter("cheiro");
 
-					m = new LinkedHashMap<String, String>();
+					m = new LinkedHashMap();
 					m.put("nome", nome);
 					m.put("som", som);
 					m.put("cheiro", cheiro);
 
-					DAO.Inserir(bd, m);
+					DAO.Inserir(bd, "Peido01", m);
 
 					break;
 				case "POST":
@@ -80,8 +81,9 @@ public class Cadastro extends HttpServlet {
 					som = request.getParameter("som");
 					cheiro = request.getParameter("cheiro");
 
-					m = new LinkedHashMap<String, String>();
+					m = new LinkedHashMap();
 					m.put("nome", nome);
+
 					if (!som.isEmpty()) {
 						m.put("som", som);
 					}
@@ -89,7 +91,7 @@ public class Cadastro extends HttpServlet {
 						m.put("cheiro", cheiro);
 					}
 
-					DAO.Atualiza(bd, m);
+					DAO.Atualiza(bd, "Peido01", new AbstractMap.SimpleEntry("nome", nome), m);
 					bd.executeUpdate();
 					bd.commit();
 					break;
@@ -100,14 +102,13 @@ public class Cadastro extends HttpServlet {
 					m = new LinkedHashMap<String, String>();
 					m.put("nome", nome);
 
-					DAO.Deleta(bd, m);
+					DAO.Deleta(bd, "Peido01", m);
 					bd.executeUpdate();
 					bd.commit();
 					break;
 			}
 
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			w.println("Deu ruim...");
 			return;
 		}
@@ -118,28 +119,36 @@ public class Cadastro extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-					throws ServletException, IOException {
+		throws ServletException, IOException {
+		PrintWriter w = response.getWriter();
+
 		try {
 			MeuPreparedStatement bd = new MeuPreparedStatement(
-							"com.microsoft.sqlserver.jdbc.SQLServerDriver",
-							"jdbc:sqlserver://regulus:1433;databasename=BD15191",
-							"BD15191", "uregis191");
+				"com.microsoft.sqlserver.jdbc.SQLServerDriver",
+				"jdbc:sqlserver://regulus:1433;databasename=BD15191",
+				"BD15191", "uregis191");
 
 			String nome = request.getParameter("nome");
-			Entry<String, String> e = new AbstractMap.SimpleEntry<String, String>("nome", nome);
+			Entry e = new AbstractMap.SimpleEntry("nome", nome);
 
-			MeuResultSet resultado = DAO.Pesquisa(bd, e);
+			MeuResultSet resultado = DAO.Pesquisa(bd, "Peido01", e);
 
-			resultado.first();
+			try {
+				resultado.first();
 
-			PrintWriter w = response.getWriter();
-			w.println("<h1>" + resultado.getString("nome") + "</h1>");
-			w.println("<hr/>");
-			w.println("Som: " + resultado.getString("som") + "<br/>");
-			w.println("Cheiro: " + resultado.getString("cheiro"));
+				w.println("<h1>" + resultado.getString("nome") + "</h1>");
+				w.println("<hr/>");
+				w.println("Som: " + resultado.getString("som") + "<br/>");
+				w.println("Cheiro: " + resultado.getString("cheiro"));
+			}
+			
+			catch(SQLException se){
+				w.println("Não existe resultados");
+			}
 
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
+			w.println("Deu ruim...");
+			return;
 		}
 	}
 
