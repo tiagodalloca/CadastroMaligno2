@@ -126,7 +126,7 @@ public class Cadastro extends HttpServlet {
 
 			String nome = request.getParameter("nome");
 			Entry e = new AbstractMap.SimpleEntry("nome", nome);
-
+			
 			MeuResultSet resultado = DAO.Pesquisa(bd, "Peido01", e);
 
 			try {

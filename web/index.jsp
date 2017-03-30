@@ -19,7 +19,7 @@
   </head>
   <body>
 		<div class="container-fluid">
-			<div class="row"><form class="form-horizontal col-md-3" action="Cadastro" method="POST">
+			<div class="row"><form class="form-horizontal col-md-3" action="cadastro.jsp" method="POST">
 					<fieldset>
 
 						<!-- Form Name -->
@@ -61,7 +61,7 @@
 					<input type="hidden" name="_method" value="PUT">
 				</form></div>
 
-			<div class="row"> <form class="form-horizontal col-md-3" action="Cadastro" method="GET">
+			<div class="row"> <form class="form-horizontal col-md-3" action="cadastro.jsp" method="POST">
 					<fieldset>
 
 						<!-- Form Name -->
@@ -85,7 +85,7 @@
 					<input type="hidden" name="_method" value="GET">
 				</form></div>
 
-			<div class="row"><form class="form-horizontal col-md-3" action="Cadastro" method="POST">
+			<div class="row"><form class="form-horizontal col-md-3" action="cadastro.jsp" method="POST">
 					<fieldset>
 
 						<!-- Form Name -->
@@ -127,7 +127,7 @@
 					<input type="hidden" name="_method" value="POST">
 				</form></div>
 
-			<div class="row"> <form class="form-horizontal col-md-3" action="Cadastro" method="POST">
+			<div class="row"> <form class="form-horizontal col-md-3" action="cadastro.jsp" method="POST">
 					<fieldset>
 
 						<!-- Form Name -->
