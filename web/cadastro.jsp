@@ -93,7 +93,7 @@
 							String s
 								= "<h1>" + resultado.getString("nome") + "</h1>"
 								+ "<hr/>"
-								+ "Som: " + resultado.getString("som") + "<br/>"
+								+ "Coloração: " + resultado.getString("som") + "<br/>"
 								+ "Cheiro: " + resultado.getString("cheiro");
 							return s;
 						} catch (SQLException se) {
@@ -105,7 +105,7 @@
 					return "Deu ruim...";
 				}
 
-				return "Sucesso!";
+				return "<h2>Sucesso!</h2>";
 			}%>	
 
 	</head>

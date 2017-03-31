@@ -23,23 +23,23 @@
 					<fieldset>
 
 						<!-- Form Name -->
-						<legend>Cadastro de flatulências</legend>
+						<legend>Cadastro de excrementos</legend>
 
 						<!-- Text input-->
 						<div class="form-group">
 							<label class="col-md-3 control-label" for="nome">Nome</label>  
 							<div class="col-md-9">
 								<input id="nome" name="nome" type="text" placeholder="Nome" class="form-control input-md" required="">
-								<span class="help-block">Nome da flatulência</span>  
+								<span class="help-block">Nome do excremento</span>  
 							</div>
 						</div>
 
 						<!-- Text input-->
 						<div class="form-group">
-							<label class="col-md-3 control-label" for="som">Som</label>  
+							<label class="col-md-3 control-label" for="som">Coloração</label>  
 							<div class="col-md-9">
-								<input id="som" name="som" type="text" placeholder="Som" class="form-control input-md" required="">
-								<span class="help-block">Som da flatulência</span>  
+								<input id="som" name="som" type="text" placeholder="Coloracação" class="form-control input-md" required="">
+								<span class="help-block">Coloração do excremento</span>  
 							</div>
 						</div>
 
@@ -48,7 +48,7 @@
 							<label class="col-md-3 control-label" for="cheiro">Cheiro</label>  
 							<div class="col-md-9">
 								<input id="cheiro" name="cheiro" type="text" placeholder="Cheiro" class="form-control input-md" required="">
-								<span class="help-block">Cheiro da flatulência</span>  
+								<span class="help-block">Cheiro do excremento</span>  
 							</div>
 						</div>
 
@@ -65,14 +65,14 @@
 					<fieldset>
 
 						<!-- Form Name -->
-						<legend>Pesquisa de flatulências</legend>
+						<legend>Pesquisar de excrementos</legend>
 
 						<!-- Text input-->
 						<div class="form-group">
 							<label class="col-md-3 control-label" for="nome">Nome</label>  
 							<div class="col-md-9">
 								<input id="nome" name="nome" type="text" placeholder="Nome" class="form-control input-md" required="">
-								<span class="help-block">Nome da flatulência</span>  
+								<span class="help-block">Nome do excremento</span>  
 							</div>
 						</div>
 
@@ -89,23 +89,23 @@
 					<fieldset>
 
 						<!-- Form Name -->
-						<legend>Atualização de flatulências</legend>
+						<legend>Atualização de excrementos</legend>
 
 						<!-- Text input-->
 						<div class="form-group">
 							<label class="col-md-3 control-label" for="nome">Nome</label>  
 							<div class="col-md-9">
 								<input id="nome" name="nome" type="text" placeholder="Nome" class="form-control input-md" required="">
-								<span class="help-block">Nome da flatulência</span>  
+								<span class="help-block">Nome do excremento</span>  
 							</div>
 						</div>
 
 						<!-- Text input-->
 						<div class="form-group">
-							<label class="col-md-3 control-label" for="som">Som</label>  
+							<label class="col-md-3 control-label" for="som">Coloração</label>  
 							<div class="col-md-9">
-								<input id="som" name="som" type="text" placeholder="Som" class="form-control input-md">
-								<span class="help-block">Som da flatulência</span>  
+								<input id="som" name="som" type="text" placeholder="Coloração" class="form-control input-md">
+								<span class="help-block">Coloração do excremento</span>  
 							</div>
 						</div>
 
@@ -114,7 +114,7 @@
 							<label class="col-md-3 control-label" for="cheiro">Cheiro</label>  
 							<div class="col-md-9">
 								<input id="cheiro" name="cheiro" type="text" placeholder="Cheiro" class="form-control input-md">
-								<span class="help-block">Cheiro da flatulência</span>  
+								<span class="help-block">Cheiro do excremento</span>  
 							</div>
 						</div>
 
@@ -131,14 +131,14 @@
 					<fieldset>
 
 						<!-- Form Name -->
-						<legend>Deleção de flatulências</legend>
+						<legend>Deleção de excrementos</legend>
 
 						<!-- Text input-->
 						<div class="form-group">
 							<label class="col-md-3 control-label" for="nome">Nome</label>  
 							<div class="col-md-9">
 								<input id="nome" name="nome" type="text" placeholder="Nome" class="form-control input-md">
-								<span class="help-block">Nome da flatulência</span>  
+								<span class="help-block">Nome do excrementos</span>  
 							</div>
 						</div>
 
